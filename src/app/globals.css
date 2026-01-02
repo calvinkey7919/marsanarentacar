@@ -2,8 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Add any global custom styles here */
+/* Design tokens for light/dark */
+:root {
+  --bg-app: #0b0b0d;
+  --bg-surface: #131316;
+  --bg-muted: #1b1b1f;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3bf;
+  --accent: #7c5cff;
+  --accent-contrast: #efecff;
+  --border: #26262b;
+}
 
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-app: #fafafa;
+    --bg-surface: #ffffff;
+    --bg-muted: #f4f4f5;
+    --text-primary: #141418;
+    --text-secondary: #4b4b54;
+    --accent: #5f44ff;
+    --accent-contrast: #0a061a;
+    --border: #e5e7eb;
+  }
+}
+
+/* Base */
 html, body {
-  @apply bg-gray-100 text-gray-900;
+  min-height: 100%;
+  background: var(--bg-app);
+  color: var(--text-primary);
+}
+
+/* VISUAL OVERRIDES for common Tailwind classes used across pages */
+.bg-gray-100 { background-color: var(--bg-app) !important; }
+.bg-gray-900 { background-color: var(--bg-surface) !important; }
+.text-gray-900 { color: var(--text-primary) !important; }
+.text-white { color: var(--text-primary) !important; }
+.border-gray-200, .border-gray-300, .border-gray-800 { border-color: var(--border) !important; }
+
+/* Link and button polish */
+a { text-decoration: none; }
+button, a {
+  transition: filter .2s ease, transform .2s ease, border-color .2s ease, background-color .2s ease;
+}
+button:hover, a:hover { transform: translateY(-1px); }
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
